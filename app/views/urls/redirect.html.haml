@@ -1,11 +1,26 @@
 
-%h1 Welcome to this super cool URL shortener!!
+%h1.display-3 Welcome to this super cool URL shortener!!
 
-.div
+%div{style: "margin: 40px;"}
   = render 'form', url: @url
 
-%h1 Top 100 more accesed sites
+%h1.display-3 Top 100 more accesed sites
 
+%table{class: 'table'}
+  %thead
+    %tr
+      %th Original URL
+      %th Shorten
+      %th Visits
+      %th Created at
 
--# Entry point for ReactJS
-#reactroot
+  %tbody
+    - @urls.each do |url|
+      %tr
+        %td= url.original_url
+        %td= link_to url.shorted_url, url.shorted_url
+        %td= url.visits
+        %td= url.created_at
+
+-# Entry point for ReactJS code
+#react-app-root

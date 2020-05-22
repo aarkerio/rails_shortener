@@ -10,6 +10,6 @@
   .field
     = f.label :Insert_new_url
     %br
-    = f.text_field :original_url, {size: 80, maxlength: 300, required: true}
+    = f.text_field :original_url, {size: 70, maxlength: 300, required: true,  class: "form-control", :'aria-label' => "Default", :'aria-describedby' => "inputGroup-sizing-default"}
   .actions
-    = f.submit
+    = f.submit class: "btn btn-primary btn-lg"

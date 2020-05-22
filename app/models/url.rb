@@ -1,6 +1,7 @@
 class Url < ApplicationRecord
 
   validates :original_url, presence: true, uniqueness: true
+  validates :original_url, url: true
 
   after_create :set_surl
 
