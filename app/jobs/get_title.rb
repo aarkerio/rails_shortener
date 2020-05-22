@@ -7,7 +7,7 @@ class GetTitle
     title         = Nokogiri::HTML::Document.parse(HTTParty.get(url.original_url).body).title
     Rails.logger.info " **** YYYYYYY RESQUE url.original_url >>> #{url.original_url} >>>>  title >>>  #{title.inspect}"
     unless title.blank?
-      url.web_title = title&.first&.first
+      url.web_title = title
       url.save
       Rails.logger.info "** RESQUE SUCCESS: url.original_url >>> #{url.original_url} >>>>  title >>>  #{title.inspect} **"
     else
