@@ -1,8 +1,10 @@
 
-%h1 URL created succesfully
+%h1{style: "text-align:center;"} URL created succesfully
 
-.div
-   @url.shorted_url
+- link = "#{request.protocol + request.host}:#{request.port.to_s}/#{@url.shorted_url}"
+
+.div{style: "text-align:center;"}
+  = link_to link, link
 
 -# Entry point for ReactJS
 #reactroot

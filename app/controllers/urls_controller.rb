@@ -1,11 +1,13 @@
+require 'socket'
+
 class UrlsController < ApplicationController
-  before_action :set_url, only: [:display, :edit, :update, :destroy]
+  before_action :set_url, only: [:display, :edit, :update, :destroy, :show]
   before_action :load_urls, only: [:redirect, :create]
 
   # GET /urls/1
   # GET /urls/1.json
   def show
-    logger.info " >>>>  I AIM SHOW >>>  #{params.inspect}"
+    @hostname = request.fullpath
   end
 
   # GET /urls/1/edit
@@ -28,9 +30,10 @@ class UrlsController < ApplicationController
   # POST /urls
   def create
     @url = Url.save_url(url_params)
-    
+
     respond_to do |format|
       if @url.shorted_url
+        Resque.enqueue(GetTitle, @url.id)
         format.html { redirect_to url_show_path(@url.shorted_url), notice: 'Shorted Url was successfully created.' }
       else
         format.html { render :redirect }
@@ -52,4 +55,5 @@ class UrlsController < ApplicationController
   def url_params
     params.require(:url).permit(:original_url)
   end
+
 end

@@ -9,8 +9,13 @@ class Url < ApplicationRecord
   BASE     = 62
 
   # Class method
-  def self.get_url(url)
-    Url.find_by(shorted_url: url)
+  def self.get_url(shorted_url)
+    return nil if shorted_url.nil?
+    logger.info " >>>>  shorted_url >>>  #{shorted_url.inspect}"
+    url = Url.find_by(shorted_url: shorted_url)
+    logger.info " >>>>  params >>>  #{url.inspect}"
+    url.increment!(:visits)
+    url
   end
 
   def self.save_url(params)

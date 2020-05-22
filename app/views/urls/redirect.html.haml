@@ -12,6 +12,7 @@
       %th Original URL
       %th Shorten
       %th Visits
+      %th Title
       %th Created at
 
   %tbody
@@ -20,6 +21,7 @@
         %td= url.original_url
         %td= link_to url.shorted_url, url.shorted_url
         %td= url.visits
+        %td= url.web_title
         %td= url.created_at
 
 -# Entry point for ReactJS code
