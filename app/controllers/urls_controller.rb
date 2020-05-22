@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-  before_action :set_url, only: [:show, :edit, :update, :destroy]
+  before_action :set_url, only: [:display, :edit, :update, :destroy]
 
   # GET /urls
   # GET /urls.json
@@ -10,6 +10,7 @@ class UrlsController < ApplicationController
   # GET /urls/1
   # GET /urls/1.json
   def show
+    logger.info " >>>>  I AIM SHOW >>>  #{params.inspect}"
   end
 
   # GET /urls/new
@@ -21,18 +22,28 @@ class UrlsController < ApplicationController
   def edit
   end
 
+  # GET /:url
+  def redirect
+    url = Url.get_url(params[:url])
+    if url&.ourl
+      redirect_to url.ourl
+    else
+      @url = Url.new
+      respond_to do |format|
+        format.html { render :redirect }
+      end
+    end
+  end
+
   # POST /urls
   # POST /urls.json
   def create
-    @url = Url.new(url_params)
-
+    @url = Url.save_url(url_params)
     respond_to do |format|
-      if @url.save
-        format.html { redirect_to @url, notice: 'Url was successfully created.' }
-        format.json { render :show, status: :created, location: @url }
+      if @url.shorted_url
+        format.html { redirect_to url_show_path(@url.shorted_url), notice: 'Shorted Url was successfully created.' }
       else
-        format.html { render :new }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
+        format.html { redirect_to "/" }
       end
     end
   end
@@ -64,11 +75,11 @@ class UrlsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url
-      @url = Url.find(params[:id])
+      @url = Url.find_by(shorted_url: params[:url])
     end
 
     # Only allow a list of trusted parameters through.
     def url_params
-      params.require(:url).permit(:ourl, :surl, :website, :visits)
+      params.require(:url).permit(:original_url)
     end
 end

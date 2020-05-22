@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :kkrls
-  resources :urls
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :urls, except: [:show]
+  get  'urls/:url' => 'urls#show', as: "url_show"
+  get '/:url' => "urls#redirect"
+  root "urls#redirect"
 end

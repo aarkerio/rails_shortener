@@ -1,0 +1,15 @@
+= form_for(url) do |f|
+  - if url.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(url.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        - url.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :Insert_new_url
+    %br
+    = f.text_field :original_url, {size: 80, maxlength: 300, required: true}
+  .actions
+    = f.submit
