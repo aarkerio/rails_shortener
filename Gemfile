@@ -25,6 +25,7 @@ gem 'hamster'  # Immutable ruby structures
 gem 'hamlit'   # HAML
 gem 'resque'
 gem 'validate_url'
+gem 'httparty'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

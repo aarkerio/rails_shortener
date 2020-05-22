@@ -1,5 +1,7 @@
+.div
+  = link_to "  <<< Go back", "/"
 
-%h1{style: "text-align:center;"} URL created succesfully
+%h1{style: "text-align:center;"} URL created successfully
 
 - link = "#{request.protocol + request.host}:#{request.port.to_s}/#{@url.shorted_url}"
 

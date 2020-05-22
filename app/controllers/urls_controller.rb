@@ -1,5 +1,3 @@
-require 'socket'
-
 class UrlsController < ApplicationController
   before_action :set_url, only: [:display, :edit, :update, :destroy, :show]
   before_action :load_urls, only: [:redirect, :create]
@@ -16,7 +14,7 @@ class UrlsController < ApplicationController
 
   # GET /:url
   def redirect
-    url = Url.get_url(params[:url])
+    url = Url.get_url(params[:url]) if params[:url]
     if url&.original_url
       redirect_to url.original_url
     else
