@@ -10,7 +10,6 @@ RSpec.describe Url, type: :model do
     describe '#validates format' do
       it 'fails to save: bad formatted string' do
         result = url_1.save
-        Rails.logger.info " >>>>  params url_1 >>>  #{url_1.inspect}"
         expect(result).to be false
       end
     end
@@ -18,10 +17,18 @@ RSpec.describe Url, type: :model do
     describe '#validates format' do
       it 'saves the new' do
         result = url_2.save
-        Rails.logger.info " >>>>  params url_2 >>>  #{url_2.inspect}"
         expect(result).to be true
       end
     end
-  end
 
+    describe '#decodes and uncodes' do
+      it 'saves and encode' do
+        url_2.save
+        shorted_url = url_2.shorted_url
+        url_3 = Url.get_url(shorted_url)
+        expect(url_2.original_url).to eq url_3.original_url
+      end
+    end
+
+  end
 end

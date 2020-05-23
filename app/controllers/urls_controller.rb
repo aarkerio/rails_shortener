@@ -2,10 +2,8 @@ class UrlsController < ApplicationController
   before_action :set_url, only: [:display, :edit, :update, :destroy, :show]
   before_action :load_urls, only: [:redirect, :create]
 
-  # GET /urls/1
-  # GET /urls/1.json
+  # GET /urls/:url
   def show
-    @hostname = request.fullpath
   end
 
   # GET /urls/1/edit

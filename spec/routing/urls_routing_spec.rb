@@ -6,16 +6,8 @@ RSpec.describe UrlsController, type: :routing do
       expect(get: "/urls").to route_to("urls#index")
     end
 
-    it "routes to #new" do
-      expect(get: "/urls/new").to route_to("urls#new")
-    end
-
     it "routes to #show" do
-      expect(get: "/urls/1").to route_to("urls#show", id: "1")
-    end
-
-    it "routes to #edit" do
-      expect(get: "/urls/1/edit").to route_to("urls#edit", id: "1")
+      expect(get: "/urls/B").to route_to("urls#show", url: "B")
     end
 
 
@@ -25,14 +17,6 @@ RSpec.describe UrlsController, type: :routing do
 
     it "routes to #update via PUT" do
       expect(put: "/urls/1").to route_to("urls#update", id: "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(patch: "/urls/1").to route_to("urls#update", id: "1")
-    end
-
-    it "routes to #destroy" do
-      expect(delete: "/urls/1").to route_to("urls#destroy", id: "1")
     end
   end
 end
