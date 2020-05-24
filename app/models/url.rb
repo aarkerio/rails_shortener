@@ -7,7 +7,7 @@ class Url < ApplicationRecord
 
   CHARS62  = ('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a
 
-  # Class method
+  # class method
   def self.get_url(shorted_url)
     return nil if shorted_url.nil?
     url = Url.find_by(shorted_url: shorted_url)
