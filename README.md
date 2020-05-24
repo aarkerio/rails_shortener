@@ -1,5 +1,7 @@
 # README
 
+Demo:  https://rashortener.herokuapp.com/
+
 Install:
 
 $ git clone git@github.com:aarkerio/rails_shortener.git
