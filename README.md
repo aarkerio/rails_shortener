@@ -14,25 +14,12 @@ In another console start the queue:
 
 $ bundle exec rake environment resque:work QUEUE=get_title
 
+Start the server:
+
 $ ENV_RAILS=development rails s
 
+Start resque:
 
-Things you may want to cover:
+$ bundle exec rake environment resque:work QUEUE=get_title
 
-* Ruby version: '2.6.5'
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

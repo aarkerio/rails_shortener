@@ -5,8 +5,8 @@ RSpec.describe Url, type: :model do
   let(:url)  { FactoryBot.create :url }
 
   context 'Create a new shortener' do
-    let(:url_1) { FactoryBot.build :url, original_url: "htggtps://ja.coder.work/so/ruby-on-rails/1506858" }
-    let(:url_2) { FactoryBot.build :url, original_url: "https://ja.coder.work/so/ruby-on-rails/1506858" }
+    let(:url_1) { FactoryBot.build :url, original_url: "htggtps://ja.coder.work/so/ruby-on-rails/1578" }
+    let(:url_2) { FactoryBot.build :url }
     describe '#validates format' do
       it 'fails to save: bad formatted string' do
         result = url_1.save

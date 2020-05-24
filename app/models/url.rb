@@ -6,14 +6,11 @@ class Url < ApplicationRecord
   after_create :set_surl
 
   CHARS62  = ('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a
-  BASE     = 62
 
   # Class method
   def self.get_url(shorted_url)
     return nil if shorted_url.nil?
-    logger.info " >>>>  shorted_url >>>  #{shorted_url.inspect}"
     url = Url.find_by(shorted_url: shorted_url)
-    logger.info " >>>>  params >>>  #{url.inspect}"
     url.increment!(:visits)
     url
   end
@@ -35,15 +32,10 @@ class Url < ApplicationRecord
     self.save
   end
 
+  # the Bijective Function stuff
   def encode_url(number)
     return CHARS62[0] if number == 0
-    s = ''
-    base = CHARS62.length
-    while number > 0
-      s << CHARS62[number.modulo(BASE)]
-      number /= BASE
-    end
-    s.reverse
+    (1..number).reduce('') {|n| CHARS62[number.modulo(CHARS62.length)]}.reverse
   end
 
   def decode_url(surl)
