@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :urls, except: [:show]
   get  'urls/:url' => 'urls#show', as: "url_show"
   get '/:url' => "urls#redirect", as: "url_redirect"
-  root "urls#redirect"
+  root "urls#giphy"
 end

@@ -10,6 +10,10 @@ class UrlsController < ApplicationController
   def edit
   end
 
+  # GET /
+  def giphy
+  end
+
   # GET /:url
   def redirect
     url = Url.get_url(params[:url]) if params[:url]
